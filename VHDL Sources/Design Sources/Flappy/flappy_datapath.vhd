@@ -29,7 +29,12 @@ signal tmp: std_logic; -- to be tied to unused outputs.
 -- Additional signals for internal nets
 signal YVel: std_logic_vector (5 downto 0); -- signal to use as output of velocity register
 -- Add other signals for interal nets as needed
-            
+signal wMuxV: std_logic_vector (5 downto 0);
+signal wMuxP: std_logic_vector (5 downto 0);
+signal wVRegO: std_logic_vector (5 downto 0);
+signal wPRegO: std_logic_vector (5 downto 0);
+signal wPosAd: std_logic_vector (5 downto 0);
+signal wVDec: std_logic_vector (5 downto 0);
            
 begin
 
