@@ -20,7 +20,35 @@ end flappy_datapath;
 architecture structural of flappy_datapath is
 
 -- Components we need (add below):
-
+-- Component declaration for full adder
+component Six_Bit_Adder is
+    Port ( A : in STD_LOGIC_VECTOR (5 downto 0);
+           B : STD_LOGIC_VECTOR (5 downto 0);
+           Y : out STD_LOGIC_VECTOR (5 downto 0);
+           Cin : in STD_LOGIC;
+           Cout : out STD_LOGIC);
+end component;
+-- mux
+component Six_Bit_Mux is
+    Port ( A : in STD_LOGIC_VECTOR (5 downto 0);
+           B : in STD_LOGIC_VECTOR (5 downto 0);
+           Y : out STD_LOGIC_VECTOR (5 downto 0);
+           S : in STD_LOGIC);
+end component;
+-- reg
+component reg_6bit is
+    Port ( D : in STD_LOGIC_VECTOR (5 downto 0);
+           Q : out STD_LOGIC_VECTOR (5 downto 0) := "000000";
+           LD : in STD_LOGIC;
+           CLR : in STD_LOGIC;
+           CLK : in STD_LOGIC);
+end component;
+-- comparator
+component lessthan_6bit is
+    Port ( A : in STD_LOGIC_VECTOR (5 downto 0);
+           B : in STD_LOGIC_VECTOR (5 downto 0);
+           E : out STD_LOGIC);
+end component;
 
 -- hardcoded signals we need (add others as needed):
 signal gnd: std_logic := '0'; -- to hardcode inputs to 0
@@ -39,8 +67,10 @@ signal wVDec: std_logic_vector (5 downto 0);
 begin
 
 -- Add instances of components here
-
-
+-- fullAd1: Full_Adder_Struct port map(A(0), B(0), Cin, Y(0), wC0);
+YVelReg: reg_6bit port map(wMuxV, wVRegO, ld_YVel, '0', clk);
+YPosReg: reg_6bit port map(wMuxP, wPRegO, ld_YPos, '0', clk);
+VelMux: Six_BitMux port map(wVDec, "000011", wMuxV, sel_VelJump);
 
 
 -- The testport can be used for evaluating internal nets.
