@@ -28,6 +28,12 @@ component Six_Bit_Adder is
            Cin : in STD_LOGIC;
            Cout : out STD_LOGIC);
 end component;
+component Six_Bit_Subtractor is
+    Port ( A : in STD_LOGIC_VECTOR (5 downto 0);
+           B : in STD_LOGIC_VECTOR (5 downto 0);
+           Y : out STD_LOGIC_VECTOR (5 downto 0);
+           Cout : out STD_LOGIC);
+end component;
 -- mux
 component Six_Bit_Mux is
     Port ( A : in STD_LOGIC_VECTOR (5 downto 0);
@@ -63,7 +69,8 @@ signal wVRegO: std_logic_vector (5 downto 0);
 signal wPRegO: std_logic_vector (5 downto 0);
 signal wPosAd: std_logic_vector (5 downto 0);
 signal wVDec: std_logic_vector (5 downto 0);
-signal PosAdCout: std_logic; -- cout which does nothing           
+signal PosAdCout: std_logic; -- cout which does nothing        
+signal VelSubCout: std_logic; -- cout which does nothing          
 begin
 
 -- Add instances of components here
@@ -74,6 +81,7 @@ VelMux: Six_Bit_Mux port map(wVDec, "000011", wMuxV, sel_VelJump);
 PosMux: Six_Bit_Mux port map("001010", wPosAd, wMuxP, sel_PosReset); 
 PosAdd: Six_Bit_Adder port map(wVRegO, wPRegO, wPosAd, '0', PosAdCout);
 CompGnd: lessthan_6bit port map(ground_level, wPosAd, below_gnd);
+SubVel: Six_Bit_Subtractor port map(wVelRegO, "000001", wVDec, VelSubCout);
 
 
 -- The testport can be used for evaluating internal nets.
