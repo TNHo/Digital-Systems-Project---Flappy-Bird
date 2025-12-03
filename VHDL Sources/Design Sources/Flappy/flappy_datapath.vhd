@@ -63,14 +63,17 @@ signal wVRegO: std_logic_vector (5 downto 0);
 signal wPRegO: std_logic_vector (5 downto 0);
 signal wPosAd: std_logic_vector (5 downto 0);
 signal wVDec: std_logic_vector (5 downto 0);
-           
+signal PosAdCout: std_logic; -- cout which does nothing           
 begin
 
 -- Add instances of components here
 -- fullAd1: Full_Adder_Struct port map(A(0), B(0), Cin, Y(0), wC0);
 YVelReg: reg_6bit port map(wMuxV, wVRegO, ld_YVel, '0', clk);
 YPosReg: reg_6bit port map(wMuxP, wPRegO, ld_YPos, '0', clk);
-VelMux: Six_BitMux port map(wVDec, "000011", wMuxV, sel_VelJump);
+VelMux: Six_Bit_Mux port map(wVDec, "000011", wMuxV, sel_VelJump);
+PosMux: Six_Bit_Mux port map("001010", wPosAd, wMuxP, sel_PosReset); 
+PosAdd: Six_Bit_Adder port map(wVRegO, wPRegO, wPosAd, '0', PosAdCout);
+CompGnd: lessthan_6bit port map(ground_level, wPosAd, below_gnd);
 
 
 -- The testport can be used for evaluating internal nets.
