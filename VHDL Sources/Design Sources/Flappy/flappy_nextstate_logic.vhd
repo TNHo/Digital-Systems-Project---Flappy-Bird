@@ -32,8 +32,6 @@ component two_input_or_gate is
            Q : out STD_LOGIC);
 end component;
 
-
-
 -- Hard coded signals
 signal vdd : std_logic := '1';
 signal gnd : std_logic := '0';
