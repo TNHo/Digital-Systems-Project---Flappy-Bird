@@ -69,6 +69,7 @@ signal wVRegO: std_logic_vector (5 downto 0);
 signal wPRegO: std_logic_vector (5 downto 0);
 signal wPosAd: std_logic_vector (5 downto 0);
 signal wVDec: std_logic_vector (5 downto 0);
+signal wVelRegO: std_logic_vector (5 downto 0);
 signal PosAdCout: std_logic; -- cout which does nothing        
 signal VelSubCout: std_logic; -- cout which does nothing          
 begin
@@ -83,6 +84,7 @@ PosAdd: Six_Bit_Adder port map(wVRegO, wPRegO, wPosAd, '0', PosAdCout);
 CompGnd: lessthan_6bit port map(ground_level, wPosAd, below_gnd);
 SubVel: Six_Bit_Subtractor port map(wVelRegO, "000001", wVDec, VelSubCout);
 
+YPos <= wPRegO;
 
 -- The testport can be used for evaluating internal nets.
 --    Test a bus
