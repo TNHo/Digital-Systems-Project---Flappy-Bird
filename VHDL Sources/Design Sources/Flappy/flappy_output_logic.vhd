@@ -22,18 +22,43 @@ end flappy_output_logic;
 architecture Structural of flappy_output_logic is
 
 -- Componenents needed:
-
+-- and
+component two_input_and_gate is
+    Port ( A : in STD_LOGIC;
+           B : in STD_LOGIC;
+           Q : out STD_LOGIC);
+end component;
+-- or
+component two_input_or_gate is
+    Port ( A : in STD_LOGIC;
+           B : in STD_LOGIC;
+           Q : out STD_LOGIC);
+end component;
 
 -- Hard coded signals
 signal vdd : std_logic := '1';
 signal gnd : std_logic := '0';
 
 -- Internal signals;
-
+signal S0NotO: std_logic;
+signal S1NotO: std_logic;
+signal WOrO4: std_logic;
+signal WOrO5: std_logic;
 
 begin
 
 -- Instances of components / output assignments
+S0NotO <= not S0;
+S1NotO <= not S1;
+
+D <= S0NotO;
+sel_PosReset <= S1;
+
+And5: two_input_and_gate port map(S0, S1NotO, J);
+Or5: two_input_or_gate port map(S0NotO, S1NotO, WOrO4);
+And6: two_input_and_gate port map(S1, S0, F);
+Or6: two_input_or_gate port map(S0, S1, WOrO5);
+And7: two_input_and_gate port map(WOrO4, WOrO5, sel_VelJump);
 
 -- Single bit test port
 testport <= gnd;
