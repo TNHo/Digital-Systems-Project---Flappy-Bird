@@ -57,9 +57,9 @@ BGndNot <= not below_gnd;
 S1NotN <= not S1;
 S0NotN <= not S0;
 -- Logic of the next state
-Or1: two_input_or_gate port map(below_gnd, S1, WOrO1);
-Or2: two_input_or_gate port map(S1NotN, S0NotN, WOrO3);
-Or4: two_input_or_gate port map(Bnot, WOrO3, WOrO2);
+Or1: two_input_or_gate port map(BGndNot, S1NotN, WOrO1);
+Or2: two_input_or_gate port map(S1, S0, WOrO3);
+Or4: two_input_or_gate port map(B, WOrO3, WOrO2);
 And1: two_input_and_gate port map(S1NotN, S0, WAndOut1);
 And2: two_input_and_gate port map(WOrO1, WOrO2, N0);
 And4: two_input_and_gate port map(Bnot, S1, WAndOut2);

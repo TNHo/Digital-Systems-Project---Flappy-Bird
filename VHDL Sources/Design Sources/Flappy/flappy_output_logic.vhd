@@ -70,10 +70,10 @@ And6: two_input_and_gate port map(S1, S0, WAndOut4);
 F <= WAndOut4; -- immediate set F to And6's output
 Or6: two_input_or_gate port map(S0, S1, WOrO5);
 And7: two_input_and_gate port map(WOrO4, WOrO5, sel_VelJump);
-Nor1: two_input_nor_gate port map(S0NotO, S1NotO, WNorO1);
+Nor1: two_input_nor_gate port map(S0, S1, WNorO1);
 Or7: two_input_or_gate port map(WNorO1, WAndOut4, ld_YPos);
 
 -- Single bit test port
-testport <= gnd;
+testport <= WNorO1;
 
 end Structural;

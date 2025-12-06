@@ -65,7 +65,7 @@ signal YVel: std_logic_vector (5 downto 0); -- signal to use as output of veloci
 -- Add other signals for interal nets as needed
 signal wMuxV: std_logic_vector (5 downto 0);
 signal wMuxP: std_logic_vector (5 downto 0);
-signal wVRegO: std_logic_vector (5 downto 0);
+--signal wVRegO: std_logic_vector (5 downto 0);
 signal wPRegO: std_logic_vector (5 downto 0);
 signal wPosAd: std_logic_vector (5 downto 0);
 signal wVDec: std_logic_vector (5 downto 0);
@@ -76,19 +76,20 @@ begin
 
 -- Add instances of components here
 -- fullAd1: Full_Adder_Struct port map(A(0), B(0), Cin, Y(0), wC0);
-YVelReg: reg_6bit port map(wMuxV, wVRegO, ld_YVel, '0', clk);
+YVelReg: reg_6bit port map(wMuxV, wVelRegO, ld_YVel, '0', clk);
 YPosReg: reg_6bit port map(wMuxP, wPRegO, ld_YPos, '0', clk);
 VelMux: Six_Bit_Mux port map(wVDec, "000011", wMuxV, sel_VelJump);
-PosMux: Six_Bit_Mux port map("001010", wPosAd, wMuxP, sel_PosReset); 
-PosAdd: Six_Bit_Adder port map(wVRegO, wPRegO, wPosAd, '0', PosAdCout);
-CompGnd: lessthan_6bit port map(ground_level, wPosAd, below_gnd);
+PosMux: Six_Bit_Mux port map(wPosAd, "001010", wMuxP, sel_PosReset); 
+PosAdd: Six_Bit_Adder port map(wVelRegO, wPRegO, wPosAd, '0', PosAdCout);
+CompGnd: lessthan_6bit port map(wPosAd, ground_level, below_gnd);
+--SubVel: Six_Bit_Adder port map(wVelRegO, "111111", wVDec, '0', VelSubCout);
 SubVel: Six_Bit_Subtractor port map(wVelRegO, "000001", wVDec, VelSubCout);
 
 YPos <= wPRegO;
 
 -- The testport can be used for evaluating internal nets.
 --    Test a bus
-testport <= YVel; -- default . . . output velocity value.
+testport <= wVelRegO; -- default . . . output velocity value.
 
 --   Test individual bits 
 --   testport(0) <= gnd;

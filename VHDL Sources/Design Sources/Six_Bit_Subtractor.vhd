@@ -53,7 +53,7 @@ signal BNOT: STD_LOGIC_VECTOR (5 downto 0);
 
 begin
 
-BNOT <= not B;
-Sub: Six_Bit_Adder port map(A, BNOT, Y, '1', Cout);
+--BNOT <= not B;
+Sub: Six_Bit_Adder port map(A, (not B), Y, '1', Cout);
 
 end Behavioral;
