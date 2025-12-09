@@ -79,7 +79,8 @@ begin
 YVelReg: reg_6bit port map(wMuxV, wVelRegO, ld_YVel, '0', clk);
 YPosReg: reg_6bit port map(wMuxP, wPRegO, ld_YPos, '0', clk);
 VelMux: Six_Bit_Mux port map(wVDec, "000011", wMuxV, sel_VelJump);
-PosMux: Six_Bit_Mux port map(wPosAd, "001010", wMuxP, sel_PosReset); 
+PosMux: Six_Bit_Mux port map("001010", wPosAd, wMuxP, sel_PosReset); 
+--PosMux: Six_Bit_Mux port map(wPosAd, "001010", wMuxP, sel_PosReset); 
 PosAdd: Six_Bit_Adder port map(wVelRegO, wPRegO, wPosAd, '0', PosAdCout);
 CompGnd: lessthan_6bit port map(wPosAd, ground_level, below_gnd);
 --SubVel: Six_Bit_Adder port map(wVelRegO, "111111", wVDec, '0', VelSubCout);
