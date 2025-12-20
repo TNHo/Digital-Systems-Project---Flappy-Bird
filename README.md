@@ -19,5 +19,8 @@ To get the datapath, we look at the HLSM and look for any behavhiors that uses s
 ![Datapath](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Schematics/Datapath_Schematic_Illustr-01.jpg)
 
 ### Controller 
+This is the part where we can't use the HLSM directly. The controller part of the custom processor uses single bit input/outputs. 
+![FSM](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Report/Incomplete%20FSM.png)
+So we make a Finite State Machine diagram, replacing any arithmetic operations with their single bit equivalents based on the contents of the Datapath.
 
 ![Processor](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Schematics/FSM%20Controller%20-%20Final.jpg)
