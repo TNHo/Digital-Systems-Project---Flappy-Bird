@@ -20,4 +20,4 @@ To get the datapath, we look at the HLSM and look for any behavhiors that uses s
 
 ### Controller 
 
-![Processor](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Schematics/FSM%20Controller-01.jpg)
+![Processor](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Schematics/FSM%20Controller%20-%20Final.jpg)
