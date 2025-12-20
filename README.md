@@ -23,4 +23,6 @@ This is the part where we can't use the HLSM directly. The controller part of th
 ![FSM](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Report/Incomplete%20FSM.png)
 So we make a Finite State Machine diagram, replacing any arithmetic operations with their single bit equivalents based on the contents of the Datapath.
 
+
+
 ![Processor](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Schematics/FSM%20Controller%20-%20Final.jpg)
