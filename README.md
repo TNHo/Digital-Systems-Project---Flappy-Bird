@@ -11,11 +11,13 @@ The purpose of the custom processor is to simulate the game of Flappy Bird. The 
 
 VHDL is a hardware description language. It is not exactly a "programming" language although it looks similar to one. It is used to describe the structure and behavhior of an electronic circuit.
 
-
-
 ## Schematic
 
+### Datapath
+To get the datapath, we look at the HLSM and look for any behavhiors that uses storage, does an arithmetic operation, or is a multi-bit input/output. Then we will add in components required for them. We use registers, a comparator, an adder and a subtractor. 
 
 ![Datapath](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Schematics/Datapath_Schematic_Illustr-01.jpg)
+
+### Controller 
 
 ![Processor](https://raw.githubusercontent.com/TNHo/Digital-Systems-Project---Flappy-Bird/refs/heads/main/Schematics/FSM%20Controller-01.jpg)
